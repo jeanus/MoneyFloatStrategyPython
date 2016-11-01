@@ -11,19 +11,18 @@ def getHtml(url):
     page = urllib.urlopen(url).read()
     return page
 
-date = "2016-10-10"
 timeout = 10
 socket.setdefaulttimeout(timeout)
 
 symbols = list()
-file_object = open(r'E:\360_Quant\Quant_Strategy\Be_A_Quant\MoneyFloatStrategy\stocks_today.txt')
+file_object = open(r'E:\Be_A_Quant\MoneyFloatStrategy\stocks_today.txt')
 for line in file_object:
     symbols.append(line.strip())
 print len(symbols)
 
         
 
-output = open(r"E:\360_Quant\Quant_Strategy\Be_A_Quant\MoneyFloatStrategy\money_float_1012.txt", 'w+')
+output = open(r"E:\Be_A_Quant\MoneyFloatStrategy\money_float_1028.txt", 'w+')
 '''
 for symbol in symbols:
     if symbol=='300138':
@@ -67,6 +66,7 @@ while len(symbols)>0:
     for symbol in symbols:
         try:
             # print symbol+" ",
+            print symbol
             url = "http://data.eastmoney.com/zjlx/"+symbol+".html"
             html = getHtml(url)
             soup = BeautifulSoup(html,from_encoding="gb18030" )
@@ -87,7 +87,7 @@ while len(symbols)>0:
                     break;
             output.write("\n")            
             output.flush()
-            time.sleep(0.1) 
+            time.sleep(0.03) 
         except Exception,ex:
             error_list.append(symbol)
             print "Find Error "+ symbol
